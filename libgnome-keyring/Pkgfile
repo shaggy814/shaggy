@@ -1,0 +1,27 @@
+# Description: GNOME keyring client library
+# URL:         http://www.gnome.org/
+# Maintainer:  Kristian Lehmann, email at zero-io dot net
+# Depends on:  libbonoboui libgcrypt libtasn1
+
+name=libgnome-keyring
+version=3.12.0
+release=1
+source=(ftp://ftp.gnome.org/pub/GNOME/sources/$name/3.12/$name-$version.tar.xz)
+
+build(){
+  cd $name-$version
+
+  ./configure --prefix=/usr \
+          --mandir=/usr/man \
+          --sysconfdir=/etc \
+          --enable-gtk-doc=no \
+	  --enable-gtk-doc-html=no \
+          --disable-nls \
+          --disable-static
+
+  make
+  make DESTDIR=$PKG install
+
+  rm -r $PKG/usr/share/locale
+  rm -r $PKG/usr/share/gtk-doc
+}

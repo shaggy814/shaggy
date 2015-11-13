@@ -1,0 +1,26 @@
+# Description: Atom is a hackable text editor for the 21st century, built on atom-shell, and based on everything we love about our favorite editors.
+# URL:         https://atom.io/
+# Maintainer:  Kristian Lehmann, email at zero-io dot net
+# Depends on:  libgnome-keyring nodejs git
+
+name=atom
+version=1.2.0
+release=1
+source=(https://github.com/atom/atom/archive/v$version.tar.gz)
+
+build() {
+	export PATH="/bin:/usr/bin:/opt/bin:/bin:/usr/bin:/opt/bin"
+	cd $name-$version
+	export HOME=`pwd`
+	script/build
+	script/grunt install --install-dir $PKG/usr/
+
+	# clean up
+	find $PKG -name "README*" -delete
+	find $PKG -name "AUTHORS" -delete
+	find $PKG -name "AUTHORS.txt" -delete
+	find $PKG -name "ChangeLog" -delete
+
+  # remove metrics
+	#rm -r $PKG/usr/share/atom/resources/app/node_modules/metrics
+}

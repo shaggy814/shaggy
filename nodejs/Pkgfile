@@ -1,0 +1,25 @@
+# Description: Node.js is a platform for easily building fast, scalable network applications.
+# URL:         http://nodejs.org/
+# Maintainer:  Kristian Lehmann, email at zero-io dot net
+# Depends on:  python
+
+name=nodejs
+version=4.2.2
+release=1
+source=(http://nodejs.org/dist/v$version/node-v$version.tar.gz)
+
+build() {
+	cd node-v$version
+	./configure --prefix=/usr
+	make
+	make install DESTDIR=$PKG/
+
+	# clean up
+	find $PKG -name "*README*" -delete
+	find $PKG -name "AUTHORS" -delete
+	find $PKG -name "INSTALL.md" -delete
+	find $PKG -name "NEWS" -delete
+	# no way to specify mandir
+	mv $PKG/usr/share/man $PKG/usr/
+	rmdir $PKG/usr/share
+}
