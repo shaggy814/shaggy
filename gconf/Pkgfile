@@ -1,0 +1,24 @@
+# Description: The GConf package contains a configuration database system used by many GNOME applications. 
+# URL:         http://gnome.org/
+# Maintainer:  shaggy814 at gmail dot com
+# Depends on:  dbus-glib libxml2
+
+name=gconf
+version=3.2.6
+release=1
+source=(http://ftp.gnome.org/pub/gnome/sources/GConf/3.2/GConf-3.2.6.tar.xz)
+
+build() {
+	export PATH="/bin:/usr/bin:/opt/bin:/bin:/usr/bin:/opt/bin"
+	cd $name-$version
+	export HOME=`pwd`
+	
+	./configure --prefix=/usr \
+            --sysconfdir=/etc \
+            --disable-orbit \
+            --disable-static &&
+	
+	make
+	make DESTDIR=$PKG install && ln -s gconf.xml.defaults /etc/gconf/gconf.xml.system
+
+}
