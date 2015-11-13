@@ -1,0 +1,21 @@
+# Description: A window switcher, run dialog and dmenu replacement 
+# URL:         https://davedavenport.github.io/rofi/
+# Maintainer:  shaggy814 at gmail dot com
+# Depends on:  xorg-libxinerama xorg-libxft xorg-libx11
+
+name=rofi
+version=0.15.11
+release=1
+source=(https://github.com/DaveDavenport/rofi/releases/download/0.15.11/rofi-0.15.11.tar.gz)
+
+build() {
+	export PATH="/bin:/usr/bin:/opt/bin:/bin:/usr/bin:/opt/bin"
+	cd $name-$version
+	export HOME=`pwd`
+	
+	./configure --prefix=/usr \
+	
+	make
+	make DESTDIR=$PKG install
+
+}
