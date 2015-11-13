@@ -19,6 +19,6 @@ build() {
             --disable-static &&
 	
 	make
-	make DESTDIR=$PKG install && ln -s gconf.xml.defaults /etc/gconf/gconf.xml.system
+	make DESTDIR=$PKG install
 
 }
