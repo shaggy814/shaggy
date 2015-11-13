@@ -1,7 +1,7 @@
 # Description: Atom is a hackable text editor for the 21st century, built on atom-shell, and based on everything we love about our favorite editors.
 # URL:         https://atom.io/
 # Maintainer:  shaggy814 at gmail dot com
-# Depends on:  libgnome-keyring nodejs git
+# Depends on:  libgnome-keyring nodejs git GConf
 
 name=atom
 version=1.2.0
