@@ -7,7 +7,7 @@ name=gconf
 version=3.2.6
 release=1
 source=(http://ftp.gnome.org/pub/gnome/sources/GConf/3.2/GConf-3.2.6.tar.xz)
-find ./ -depth -exec rename -n 'y/[A-Z]/[a-z]/' {} ";"
+find *.tar.xz  -exec rename 'y/[A-Z]/[a-z]/' {} ";"
 
 build() {
 	export PATH="/bin:/usr/bin:/opt/bin:/bin:/usr/bin:/opt/bin"
