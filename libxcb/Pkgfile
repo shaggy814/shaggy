@@ -1,0 +1,21 @@
+# Description: The X protocol C-language Binding (XCB) is a replacement for Xlib featuring a small footprint, latency hiding, direct access to the protocol, improved threading support, and extensibility.
+# URL:         http://xcb.freedesktop.org/
+# Maintainer:  shaggy814 at gmail dot com
+# Depends on:  
+
+name=libxcb
+version=1.11.1
+release=1
+source=(http://xcb.freedesktop.org/dist/$name-$version.tar.gz)
+
+build() {
+	export PATH="/bin:/usr/bin:/opt/bin:/bin:/usr/bin:/opt/bin"
+	cd $name-$version
+	export HOME=`pwd`
+	
+	./configure --prefix=/usr \
+	
+	make
+	make DESTDIR=$PKG install
+
+}

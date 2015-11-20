@@ -21,5 +21,4 @@ build() {
 	find $PKG -name "NEWS" -delete
 	# no way to specify mandir
 	mv $PKG/usr/share/man $PKG/usr/
-	rmdir $PKG/usr/share
 }
